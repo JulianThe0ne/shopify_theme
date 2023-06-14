@@ -56,8 +56,22 @@
         cols="30"
         rows="4"
         placeholder="Enter your instructions"></textarea>
-
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const addInstructionsCheckbox = document.getElementById("addInstructionsCheckbox");
+        const addInstructionsTextarea = document.getElementById("instructionsTextarea");
+
+        addInstructionsCheckbox.addEventListener("change", function() {
+          instructionsTextarea.style.display = addInstructionsCheckbox.checked
+            ? "block"
+            : "none";
+        });
+      });
+    </script>
 
     <div>
       <p>sub total : {{ cart.total_price | money }}</p>
