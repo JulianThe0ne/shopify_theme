@@ -51,28 +51,22 @@
     event.preventDefault();
 
 // Get the current number of items in the cart
-    axios.get("/cart.js").then((response) => {
+    axios.get("/cart").then((response) => {
       const totalItems = response.data.item_count;
       const cartIndex = totalItems || 0;
 
-// Create the line item property
-      const lineItemProperty = {
-        name: "cart_index",
-        value: cartIndex.toString()
-      };
-
-// Construct the request payload
       const requestData = {
         id: document.getElementById("productSelect").value,
         quantity: document.getElementById("Quantity").value,
-        properties: [lineItemProperty]
+        properties: {
+          name: "cart_index",
+          value: cartIndex.toString()
+        }
       };
 
-// Send the request to add the item to the cart
-      axios.post('/cart/add.js', requestData).then((response) => {
+      axios.post('/cart/add', requestData).then((response) => {
         console.log(response);
 
-// Update the cart count displayed on the page
         let cartNumElement = document.getElementById("item_count");
         const quantity = parseInt(document.getElementById("Quantity").value);
         const newCount = parseInt(cartNumElement.innerText) + quantity;
