@@ -55,6 +55,7 @@
         id="instructionsTextarea"
         cols="30"
         rows="4"
+        name="note"
         placeholder="Enter your instructions"></textarea>
     </div>
 
@@ -71,6 +72,19 @@
           instructionsTextarea.style.display = addInstructionsCheckbox.checked
             ? "block"
             : "none";
+        });
+
+
+        const form = document.getElementById("form-cart");
+        form.addEventListener("submit", function(event) {
+          event.preventDefault();
+
+// const cartNoteInput = document.getElementsByName("note")[0];
+
+          const cartNoteInput = document.querySelector('[name="note"]');
+          cartNoteInput.value = addInstructionsTextarea.value;
+
+          form.submit();
         });
       });
     </script>
