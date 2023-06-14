@@ -78,8 +78,8 @@
         form.addEventListener("submit", function(event) {
           event.preventDefault();
 
-          const cartNoteInput = document.getElementsByName("note")[0];
-          cartNoteInput.value = addOrderNotes.value;
+          const cartNoteInput = document.getElementsById("orderNotes");
+          cartNoteInput.value = orderNotes.value;
 
           form.submit();
         });
