@@ -76,8 +76,10 @@
         form.addEventListener("submit", function(event) {
           event.preventDefault();
 
-          const cartNoteInput = document.getElementById("orderNotes");
-          cartNoteInput.value = orderNotes.value;
+          axios.post('/cart/update.js', {note: event.target.value});
+
+// const cartNoteInput = document.getElementById("orderNotes");
+// cartNoteInput.value = orderNotes.value;
 
           form.submit();
         });
