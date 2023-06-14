@@ -65,6 +65,8 @@
         const addInstructionsCheckbox = document.getElementById("addInstructionsCheckbox");
         const addInstructionsTextarea = document.getElementById("instructionsTextarea");
 
+        instructionsTextarea.style.display = "none";
+
         addInstructionsCheckbox.addEventListener("change", function() {
           instructionsTextarea.style.display = addInstructionsCheckbox.checked
             ? "block"
