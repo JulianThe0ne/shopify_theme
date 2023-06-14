@@ -79,9 +79,7 @@
         form.addEventListener("submit", function(event) {
           event.preventDefault();
 
-// const cartNoteInput = document.getElementsByName("note")[0];
-
-          const cartNoteInput = document.querySelector('[name="note"]');
+          const cartNoteInput = document.getElementsByName("note")[0];
           cartNoteInput.value = addInstructionsTextarea.value;
 
           form.submit();
