@@ -52,9 +52,10 @@
       </label>
 
       <textarea
-        id="instructionsTextarea"
+        id="orderNotes"
         cols="30"
         rows="4"
+        style="display: none"
         name="note"
         placeholder="Enter your instructions"></textarea>
     </div>
@@ -64,12 +65,10 @@
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         const addInstructionsCheckbox = document.getElementById("addInstructionsCheckbox");
-        const addInstructionsTextarea = document.getElementById("instructionsTextarea");
-
-        instructionsTextarea.style.display = "none";
+        const addOrderNotes = document.getElementById("orderNotes");
 
         addInstructionsCheckbox.addEventListener("change", function() {
-          instructionsTextarea.style.display = addInstructionsCheckbox.checked
+          orderNotes.style.display = addInstructionsCheckbox.checked
             ? "block"
             : "none";
         });
@@ -80,7 +79,7 @@
           event.preventDefault();
 
           const cartNoteInput = document.getElementsByName("note")[0];
-          cartNoteInput.value = addInstructionsTextarea.value;
+          cartNoteInput.value = addOrderNotes.value;
 
           form.submit();
         });

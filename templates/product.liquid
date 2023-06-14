@@ -56,14 +56,14 @@
 // Get the current number of items in the cart
     axios.get("/cart").then((response) => {
       const totalItems = response.data.item_count;
-      const cartIndex = totalItems || 0;
+      const cartIndex = totalItems;
+
 
       const requestData = {
         id: document.getElementById("productSelect").value,
         quantity: document.getElementById("Quantity").value,
         properties: {
-          name: "cart_index",
-          value: cartIndex.toString()
+          cart_index: cartIndex
         }
       };
 
