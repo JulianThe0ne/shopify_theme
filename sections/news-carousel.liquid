@@ -1,0 +1,102 @@
+<h1>{{ section.settings.section_title }}</h1>
+
+{% schema %}
+  {
+    "name": "news-carousel",
+    "settings": [
+      {
+        "id": "section_title",
+        "type": "text",
+        "label": "Section Title",
+        "default": "Title"
+      }
+    ],
+    "presets": [
+      {
+        "name": "News-carousel",
+        "category": "Custom section"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "campaign",
+        "name": "Campaign Block",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "Campain Title"
+          }, {
+            "type": "textarea",
+            "label": "Description",
+            "id": "description",
+            "default": "Campaign Description"
+          }, {
+            "type": "checkbox",
+            "label": "Featured",
+            "id": "featured",
+            "default": false
+          }
+        ]
+      }, {
+        "type": "new-product",
+        "name": "New Product Block",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "New Product Title"
+          }, {
+            "type": "textarea",
+            "label": "Description",
+            "id": "description",
+            "default": "New Product Description"
+          }, {
+            "type": "checkbox",
+            "label": "Featured",
+            "id": "featured",
+            "default": false
+          }
+        ]
+      }, {
+        "type": "news",
+        "name": "News Block",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "News Title"
+          }, {
+            "type": "textarea",
+            "label": "Description",
+            "id": "description",
+            "default": "News Description"
+          }, {
+            "type": "checkbox",
+            "label": "Featured",
+            "id": "featured",
+            "default": false
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% assign blocks = section.blocks | sort: 'settings.featured' | reverse %}
+
+{% for block in blocks %}
+  <div class="block">
+    {% if block.type == 'campaign' %}
+      <h2 style="color: red;">{{ block.settings.title }}</h2>
+    {% elsif block.type == 'new-product' %}
+      <h2 style="color: blue;">{{ block.settings.title }}</h2>
+    {% elsif block.type == 'news' %}
+      <h2 style="color: green;">{{ block.settings.title }}</h2>
+    {% endif %}
+    <p>{{ block.settings.description }}</p>
+  </div>
+{% endfor %}
