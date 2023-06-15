@@ -1,12 +1,20 @@
+<h1>{{ section.settings.section_title }}</h1>
+
 {% schema %}
   {
     "name": "news-carousel",
     "settings": [
       {
-        "id": "section_carousel",
+        "id": "section_title",
         "type": "text",
         "label": "Section Title",
         "default": "Title"
+      }
+    ],
+    "presets": [
+      {
+        "name": "News-carousel",
+        "category": "Custom section"
       }
     ],
     "blocks": [
