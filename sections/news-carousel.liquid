@@ -77,3 +77,18 @@
     ]
   }
 {% endschema %}
+
+{% assign blocks = section.blocks | sort: 'settings.featured' | reverse %}
+
+{% for block in blocks %}
+  <div class="block">
+    {% if block.type == 'campaign' %}
+      <h2 style="color: red;">{{ block.settings.title }}</h2>
+    {% elsif block.type == 'new-product' %}
+      <h2 style="color: blue;">{{ block.settings.title }}</h2>
+    {% elsif block.type == 'news' %}
+      <h2 style="color: green;">{{ block.settings.title }}</h2>
+    {% endif %}
+    <p>{{ block.settings.description }}</p>
+  </div>
+{% endfor %}
