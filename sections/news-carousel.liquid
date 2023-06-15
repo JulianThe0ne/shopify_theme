@@ -1,0 +1,79 @@
+{% schema %}
+  {
+    "name": "news-carousel",
+    "settings": [
+      {
+        "id": "section_carousel",
+        "type": "text",
+        "label": "Section Title",
+        "default": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "campaign",
+        "name": "Campaign Block",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "Campain Title"
+          }, {
+            "type": "textarea",
+            "label": "Description",
+            "id": "description",
+            "default": "Campaign Description"
+          }, {
+            "type": "checkbox",
+            "label": "Featured",
+            "id": "featured",
+            "default": false
+          }
+        ]
+      }, {
+        "type": "new-product",
+        "name": "New Product Block",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "New Product Title"
+          }, {
+            "type": "textarea",
+            "label": "Description",
+            "id": "description",
+            "default": "New Product Description"
+          }, {
+            "type": "checkbox",
+            "label": "Featured",
+            "id": "featured",
+            "default": false
+          }
+        ]
+      }, {
+        "type": "news",
+        "name": "News Block",
+        "settings": [
+          {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "News Title"
+          }, {
+            "type": "textarea",
+            "label": "Description",
+            "id": "description",
+            "default": "News Description"
+          }, {
+            "type": "checkbox",
+            "label": "Featured",
+            "id": "featured",
+            "default": false
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
