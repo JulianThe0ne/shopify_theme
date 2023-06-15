@@ -58,8 +58,6 @@
       name="note"
       placeholder="Enter your instructions"></textarea>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         const addInstructionsCheckbox = document.getElementById("addInstructionsCheckbox");
@@ -76,10 +74,8 @@
         form.addEventListener("submit", function(event) {
           event.preventDefault();
 
-          axios.post('/cart/update.js', {note: event.target.value});
-
-// const cartNoteInput = document.getElementById("orderNotes");
-// cartNoteInput.value = orderNotes.value;
+          const cartNoteInput = document.getElementById("orderNotes");
+          cartNoteInput.value = orderNotes.value;
 
           form.submit();
         });
