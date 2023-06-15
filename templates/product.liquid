@@ -118,12 +118,18 @@
   </div>
 </div>
 
-<dialog open>
-  <p>Greetings, one and all!</p>
-  <form method="dialog">
-    <button>OK</button>
-  </form>
-</dialog>
+
+<div class="modal fade" id="exampleModal">
+  <dialog open>
+    <p>Stock left {{ product.title }}:</p>
+    <form method="dialog">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal">Close</button>
+    </form>
+  </dialog>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
