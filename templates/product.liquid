@@ -1,13 +1,20 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-<img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
+<img
+  src="{{ featured_image | img_url: 'large' }}"
+  alt="{{ featured_image.alt | escape }}"
+  id="ProductPhotoImg">
 {% for image in product.images %}
   <a href="{{ image.src | img_url: 'large' }}">
     <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
   </a>
 {% endfor %}
 <h1>{{ product.title }}</h1>
-<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+<form
+  action="/cart/add"
+  method="post"
+  enctype="multipart/form-data"
+  id="AddToCartForm">
   <select name="id" id="productSelect">
     {% for variant in product.variants %}
       {% if variant.available %}
@@ -23,7 +30,55 @@
   </select>
   {{ current_variant.price | money }}
   <label for="Quantity">quantity</label>
-  <input type="number" id="Quantity" name="quantity" value="1" min="1">
-  <button type="submit" name="add" id="AddToCart">Add to cart</button>
+  <input
+    type="number"
+    id="Quantity"
+    name="quantity"
+    value="1"
+    min="1">
+
+  <button
+    type="submit"
+    name="add"
+    id="AddToCart"
+    class="add-to-cart-button{% if current_variant.available %} available{% else %} disabled{% endif %}">Add to cart</button>
+
 </form>
 <div>{{ product.description }}</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+  const form = document.getElementById("AddToCartForm");
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+// Get the current number of items in the cart
+    axios.get("/cart").then((response) => {
+      const totalItems = response.data.item_count;
+      const cartIndex = totalItems;
+
+
+      const requestData = {
+        id: document.getElementById("productSelect").value,
+        quantity: document.getElementById("Quantity").value,
+        properties: {
+          cart_index: cartIndex
+        }
+      };
+
+      axios.post('/cart/add', requestData).then((response) => {
+        console.log(response);
+
+        let cartNumElement = document.getElementById("item_count");
+        const quantity = parseInt(document.getElementById("Quantity").value);
+        const newCount = parseInt(cartNumElement.innerText) + quantity;
+        cartNumElement.innerText = newCount;
+      }).catch((error) => {
+        console.log(error);
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
+  });
+</script>
