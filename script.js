@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const shopifyApiKey = process.env.SHOPIFY_API_KEY;
 const shopifyStoreUrl = 'https://kuro-yellow.myshopify.com';
-const productId = 'onigiri';
+const productId = '8383865028889';
 
 
 // Function to check if the metafield already exists
@@ -49,7 +49,7 @@ async function createOrUpdateMetafield() {
       await axios.post(
         `${shopifyStoreUrl}/admin/api/2023-04/products/${productId}/metafields.json`,
         {
-          "metafield": {
+          metafield: {
             "namespace": 'global',
             "key": 'test',
             "value": '0',
