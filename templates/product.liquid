@@ -123,13 +123,13 @@
 
         <!-- Display information about the current user's cart -->
         {% if cart.item_count > 0 %}
-          <p>************ Cart ************</p>
+          <p>************************ Cart ************************</p>
           <p>Total items in cart: {{ cart.item_count }}</p>
           <p>List of item:</p>
           <ul>
             {% for item in cart.items %}
               <p>
-                {{ item.properties.cart_index.value }} - {{ item.product.title }}</p>
+                {{ item.properties.cart_index.key.value }} - {{ item.product.title }}</p>
             {% endfor %}
           </ul>
           <p>Total amount in cart: {{ cart.total_price | money }}</p>
