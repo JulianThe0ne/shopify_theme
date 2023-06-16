@@ -112,7 +112,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">About this product & your cart</h3>
+        <h3 class="modal-title" id="exampleModalLabel">About this product & your cart 🛒</h3>
       </div>
       <div class="modal-body">
         {% if current_variant.available %}
@@ -123,6 +123,7 @@
 
         <!-- Display information about the current user's cart -->
         {% if cart.item_count > 0 %}
+          <p>************ Cart ************</p>
           <p>Total items in cart: {{ cart.item_count }}</p>
           <p>List of item:</p>
           <ul>
