@@ -58,7 +58,7 @@
 // Get the current number of items in the cart
     axios.get("/cart").then((response) => {
       const totalItems = response.data.item_count;
-      const cartIndex = totalItems;
+      cartIndex = totalItems;
 
 
       const requestData = {
@@ -129,7 +129,7 @@
           <ul>
             {% for item in cart.items %}
               <p>
-                {{ item.properties.cart_index.key.value }} - {{ item.product.title }}</p>
+                {{ item.properties.cart_index.value }} - {{ item.product.title }}</p>
             {% endfor %}
           </ul>
           <p>Total amount in cart: {{ cart.total_price | money }}</p>
