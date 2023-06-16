@@ -15,6 +15,19 @@ async function createProduct() {
           body_html: '<p>Get drunk for cheap!</p>',
           vendor: 'Sample Vendor',
           product_type: 'Sample Type',
+          variants: [
+            {
+              price: '200',
+              inventory_management: 'shopify',
+              inventory_policy: 'deny',
+              inventory_quantity: 10,
+            },
+          ],
+          images: [
+            {
+              src: 'https://shop.r10s.jp/yo-sake/cabinet/sake_shouchu/chuuhai1/56175a72.jpg',
+            },
+          ],
         },
       },
       {
