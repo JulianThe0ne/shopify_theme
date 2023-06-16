@@ -50,13 +50,15 @@
 
 <script>
   const form = document.getElementById("AddToCartForm");
+  let cartIndex = 0;
+
   form.addEventListener("submit", function(event) {
     event.preventDefault();
 
 // Get the current number of items in the cart
     axios.get("/cart").then((response) => {
       const totalItems = response.data.item_count;
-      const cartIndex = totalItems;
+      cartIndex = totalItems;
 
 
       const requestData = {
@@ -74,11 +76,84 @@
         const quantity = parseInt(document.getElementById("Quantity").value);
         const newCount = parseInt(cartNumElement.innerText) + quantity;
         cartNumElement.innerText = newCount;
+
+        $('exampleModal').modal('show');
       }).catch((error) => {
         console.log(error);
       });
     }).catch((error) => {
       console.log(error);
     });
+  });
+</script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">About this product & your cart 🛒</h3>
+      </div>
+      <div class="modal-body">
+        {% if current_variant.available %}
+          <p>Stock left on {{ product.title }}: {{ current_variant.inventory_quantity }}</p>
+        {% else %}
+          <p>Sorry, {{ product.title }} is sold out</p>
+        {% endif %}
+
+        <!-- Display information about the current user's cart -->
+        {% if cart.item_count > 0 %}
+          <p>************************ Cart ************************</p>
+          <p>Total items in cart: {{ cart.item_count }}</p>
+          <p>List of item:</p>
+          <ul>
+            {% for item in cart.items %}
+              <p>
+                {{ item.properties.cart_index.value }} - {{ item.product.title }}</p>
+            {% endfor %}
+          </ul>
+          <p>Total amount in cart: {{ cart.total_price | money }}</p>
+        {% else %}
+          <p>Your cart is empty</p>
+        {% endif %}
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+
+
+<script>
+  window.addEventListener('load', () => {
+    $('#exampleModal').modal('show');
   });
 </script>
