@@ -1,4 +1,4 @@
-require('dotenv').congif();
+require('dotenv').config();
 const axios = require('axios');
 
 const shopifyApiKey = process.env.SHOPIFY_API_KEY;
